@@ -2,4 +2,6 @@
 ## Free Decentralized Anonymous Protocol
 
 RoadMap
-[ ] Work
+- [ ] JUST Work
+- [ ] Git-Like
+- [ ] FreeWeb
