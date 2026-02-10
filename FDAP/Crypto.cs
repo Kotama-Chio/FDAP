@@ -9,13 +9,18 @@ namespace FDAP
 {
     public class Crypto
     {
-        byte[] ComputeHash(byte[] data)
+        public static byte[] ComputeHash(byte[] data)
         {
             using (var sha256 = SHA256.Create())
             {
                 byte[] hash = sha256.ComputeHash(data);
                 return hash;
             }
+
+        }
+        public static string ToHex(byte[] hash)
+        {
+            return BitConverter.ToString(hash).Replace("-", "").ToLower();
         }
     }
 }

@@ -8,21 +8,21 @@ using System.Threading.Tasks;
 
 namespace FDAP
 {
-    public interface ICall
+    public class Call
     {
-        IPAddress LastRelay { get; }
-        byte[] HashRequest { get; }
+        public string LastRelay {  get; set; }
+        public byte[] HashRequest {  get; set; }
     }
 
     public class JsonCall
     {
-        public static void CreateCall(ICall call)
+        public static void CreateCall(Call call)
         {
             JsonSerializer.Serialize(call);
         }
-        public static ICall LoadCall(string fill)
+        public static Call LoadCall(string fill)
         {
-            return JsonSerializer.Deserialize<ICall>(fill);
+            return JsonSerializer.Deserialize<Call>(fill);
         }
     }
 }

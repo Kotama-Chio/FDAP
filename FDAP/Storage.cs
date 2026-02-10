@@ -9,5 +9,12 @@ namespace FDAP
     public class Storage
     {
         public string basePath = "./fdap-storage/";
+        private string callPath = "./calls/";
+        private string filePath = "./files/";
+
+        public Storage()
+        {
+            Directory.CreateDirectory(basePath);
+        }
     }
 }
