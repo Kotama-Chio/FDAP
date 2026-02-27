@@ -1,4 +1,5 @@
 ﻿using FDAP;
+using FDAPTerminal;
 using System.Net;
 using System.Net.Sockets;
 
@@ -8,9 +9,10 @@ TcpListener tcpListener = new TcpListener(6866);
 TcpClient tcpClient = new TcpClient();
 Logs logs = new Logs();
 
+node.Start(Address, tcpListener, tcpClient);
 
 while (true)
 {
-    node.Start(Address, tcpListener, tcpClient);
     node.Logic(Address, tcpListener, tcpClient, logs);
+    LogPrint.PrintLogs(logs);
 }

@@ -14,6 +14,13 @@ namespace FDAP
         public byte[] HashRequest {  get; set; }
     }
 
+    public class CallAnswer
+    {
+        public string LastRelay { get; set; }
+        public byte[] HashRequest { get; set; }
+        public byte[] Answer { get; set; }
+    }
+
     public class JsonCall
     {
         public static void CreateCall(Call call)
