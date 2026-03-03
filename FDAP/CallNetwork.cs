@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FDAP
 {
-    public class Network
+    public class CallNetwork
     {
         public static async Task BroadcastCall(List<IPAddress> neightbors, string callfilepath, Logs logs)
         {

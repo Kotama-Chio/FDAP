@@ -12,7 +12,7 @@ namespace FDAP
 
         public void Logic(List<IPAddress> neighbors, TcpListener listener, TcpClient sender, Logs logs)
         {
-            _ = Task.Run(() => Network.Listen(listener, logs));
+            _ = Task.Run(() => CallNetwork.Listen(listener, logs));
         }
     }
 }
