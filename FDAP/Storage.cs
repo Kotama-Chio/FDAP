@@ -20,5 +20,41 @@ namespace FDAP
         {
             Directory.CreateDirectory(basePath);
         }
+
+        public void Store(byte[] hash, byte[] content)
+        {
+            string hashHex = Crypto.ToHex(hash);
+            string filePath = Path.Combine(basePath, hashHex);
+
+            File.WriteAllBytes(filePath, content);
+
+            Logs.Add($"File {filePath} was successfully stored.");
+        }
+
+        public byte[] Get(byte[] hash)
+        {
+            string hashHex = Crypto.ToHex(hash);
+            string filePath = Path.Combine(basePath, hashHex);
+
+            if (File.Exists(filePath))
+            {
+                Console.WriteLine($"File {hashHex} was successfully founded");
+                return File.ReadAllBytes(filePath);
+            }
+
+            Console.WriteLine($"File {hashHex} not found.");
+            return null;
+        }
+        public bool Has(byte[] hash)
+        {
+            string hashHex = Crypto.ToHex(hash);
+            string filePath = Path.Combine(basePath, hashHex);
+            return File.Exists(filePath);
+        }
+        public List<string> ListAll()
+        {
+            var files = Directory.GetFiles(basePath);
+            return files.Select(Path.GetFileName).ToList();
+        }
     }
 }

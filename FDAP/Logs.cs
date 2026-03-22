@@ -8,10 +8,15 @@ namespace FDAP
 {
     public class Logs
     {
-        public Dictionary<DateTime, string> Log { get; set; }
-        public Logs() 
+        public static Dictionary<DateTime, string> Log =  new Dictionary<DateTime, string>();
+
+        public static void Add(string text)
         {
-            Log = new Dictionary<DateTime, string>();
+            Log.Add(DateTime.Now, text);
+        }
+        public static void Clear()
+        {
+            Log.Clear();
         }
     }
 }

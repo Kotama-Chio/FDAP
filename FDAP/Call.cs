@@ -27,9 +27,9 @@ namespace FDAP
         {
             JsonSerializer.Serialize(call);
         }
-        public static Call LoadCall(string fill)
+        public static Call LoadCall(string filePath)
         {
-            return JsonSerializer.Deserialize<Call>(fill);
+            return JsonSerializer.Deserialize<Call>(filePath);
         }
     }
 }

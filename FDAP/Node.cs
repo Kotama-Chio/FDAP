@@ -10,9 +10,9 @@ namespace FDAP
             listener.Start();
         }
 
-        public void Logic(List<IPAddress> neighbors, TcpListener listener, TcpClient sender, Logs logs)
+        public void Logic(List<IPAddress> neighbors, TcpListener listener, TcpClient sender)
         {
-            _ = Task.Run(() => CallNetwork.Listen(listener, logs));
+            _ = Task.Run(() => CallNetwork.Listen(listener));
         }
     }
 }

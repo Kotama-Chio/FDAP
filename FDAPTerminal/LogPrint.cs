@@ -4,9 +4,9 @@ namespace FDAPTerminal
 {
     public class LogPrint
     {
-        public static void PrintLogs(Logs logs)
+        public static void PrintLogs()
         {
-            foreach (var log in logs.Log)
+            foreach (var log in Logs.Log)
             {
                 if (log.Key == DateTime.MinValue)
                 {

@@ -11,7 +11,7 @@ namespace FDAP
 {
     public class CallNetwork
     {
-        public static async Task BroadcastCall(List<IPAddress> neightbors, string callfilepath, Logs logs)
+        public static async Task BroadcastCall(List<IPAddress> neightbors, string callfilepath)
         {
             foreach (IPAddress address in neightbors)
             {
@@ -33,20 +33,20 @@ namespace FDAP
 
         }
 
-        public static async Task Listen(TcpListener listener, Logs logs)
+        public static async Task Listen(TcpListener listener)
         {
             var client = await listener.AcceptTcpClientAsync();
-            _ = Task.Run(() => HandleClient(client, logs));
+            _ = Task.Run(() => HandleClient(client));
         }
 
 
-        private static async Task HandleClient(TcpClient tcpClient, Logs logs)
+        private static async Task HandleClient(TcpClient tcpClient)
         {
             var stream = tcpClient.GetStream();
             byte[] buffer = new byte[4096];
 
             int bytes = await stream.ReadAsync(buffer, 0, buffer.Length);
-            logs.Log.Add(DateTime.Now, $"Received {bytes}");
+            Logs.Add($"Received {bytes}");
 
             await stream.WriteAsync(buffer, 0, bytes);
             tcpClient.Close();
