@@ -12,24 +12,28 @@ namespace FDAP
     {
         public string LastRelay {  get; set; }
         public byte[] HashRequest {  get; set; }
+        public byte[] CallID {  get; set; }
     }
 
     public class CallAnswer
     {
         public string LastRelay { get; set; }
-        public byte[] HashRequest { get; set; }
+        public byte[] CallID { get; set; }
         public byte[] Answer { get; set; }
     }
 
     public class JsonCall
     {
-        public static void CreateCall(Call call)
+        public static byte[] CreateCall(Call call)
         {
-            JsonSerializer.Serialize(call);
+            string json = JsonSerializer.Serialize(call);
+            return Encoding.UTF8.GetBytes(json);
         }
-        public static Call LoadCall(string filePath)
+
+        public static Call LoadCall(byte[] data)
         {
-            return JsonSerializer.Deserialize<Call>(filePath);
+            string json = Encoding.UTF8.GetString(data);
+            return JsonSerializer.Deserialize<Call>(json);
         }
     }
 }

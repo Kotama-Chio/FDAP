@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FDAP
 {
@@ -20,6 +14,7 @@ namespace FDAP
                 await SendCall(client, callfilepath);
                 client.Close();
             }
+            Logs.Add($"Sent {callfilepath} broadcast");
         }
 
         private static async Task SendCall(TcpClient tcpClient, string callfilepath)
@@ -27,6 +22,7 @@ namespace FDAP
             Stream stream = tcpClient.GetStream();
             byte[] data = File.ReadAllBytes(callfilepath);
             await stream.WriteAsync(data, 0, data.Length);
+            Logs.Add($"Sent {callfilepath} to  {tcpClient.Client.AddressFamily.ToString()}");
         }
         public static async Task ReturnCallAnswer(string callfilepath)
         {
@@ -38,7 +34,6 @@ namespace FDAP
             var client = await listener.AcceptTcpClientAsync();
             _ = Task.Run(() => HandleClient(client));
         }
-
 
         private static async Task HandleClient(TcpClient tcpClient)
         {

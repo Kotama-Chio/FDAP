@@ -5,12 +5,15 @@ namespace FDAP
 {
     public class Node
     {
-        public void Start(List<IPAddress> neighbors, TcpListener listener, TcpClient sender)
+        public List<IPAddress> Neighbors = new List<IPAddress>();
+
+
+        public void Start(TcpListener listener, TcpClient sender)
         {
             listener.Start();
         }
 
-        public void Logic(List<IPAddress> neighbors, TcpListener listener, TcpClient sender)
+        public void Logic(TcpListener listener, TcpClient sender)
         {
             _ = Task.Run(() => CallNetwork.Listen(listener));
         }
